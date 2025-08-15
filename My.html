@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Para minha querida amiga</title>
+    <!-- Inclui a biblioteca Tailwind CSS para um estilo profissional e responsivo -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Inclui a fonte 'Inter' para o corpo e uma fonte fofa para o título -->
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Inter:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        /* Define a fonte 'Inter' para todo o corpo da página */
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        /* Aplica a fonte 'Dancing Script' para o título, dando um toque especial */
+        .title-font {
+            font-family: 'Dancing Script', cursive;
+        }
+    </style>
+</head>
+<body class="bg-gradient-to-br from-pink-100 via-rose-100 to-purple-100 min-h-screen flex items-center justify-center p-4">
+
+    <!-- Container principal do cartão -->
+    <div class="max-w-md w-full bg-white rounded-[2rem] shadow-xl shadow-pink-200 p-8 transform transition-transform duration-500 hover:scale-105">
+        
+        <!-- Título do cartão com fonte fofa e emojis -->
+        <h1 class="title-font text-5xl font-bold text-center text-pink-700 mb-6">
+            Uma Mensagem para Você! 💌
+        </h1>
+
+        <!-- Mensagem inicial para a usuária com emoji -->
+        <p id="initialMessage" class="text-center text-gray-600 mb-8 transition-opacity duration-500 opacity-100">
+            Clique no botão abaixo para uma surpresa! ✨
+        </p>
+
+        <!-- Mensagem escondida que será revelada -->
+        <div id="hiddenMessage" class="text-center text-gray-800 text-lg mb-8 transition-all duration-700 max-h-0 opacity-0 overflow-hidden">
+            <!--
+                *** MENSAGEM PERSONALIZADA:
+                Esta é a sua mensagem editada.
+            -->
+            <p>Minha querida amiga Maria Vitória, Mavi 💖✨<br><br>Espero que esta pequena surpresa ilumine o seu dia! Nunca imaginei que aquela garota que eu mais zoava se tornaria uma das pessoas com quem mais me abri durante toda a junção dos dois segundos anos do integral. Sei que às vezes te faço perder a paciência e que talvez eu não tenha sido o melhor amigo, mas quero que saiba que torço muito por você. 💕<br><br>Desejo uma boa ida ao noturno e que você nunca se esqueça dos seus amigos… especialmente deste aqui 🐻💖</p>
+        </div>
+
+        <!-- Botão para revelar a mensagem -->
+        <div class="flex justify-center">
+            <button id="revealButton" 
+                    class="bg-pink-400 text-white font-bold py-3 px-8 rounded-full shadow-lg hover:bg-pink-500 focus:outline-none focus:ring-2 focus:ring-pink-300 focus:ring-opacity-50 transition-all duration-300 transform hover:scale-110">
+                Abrir Cartão 🎁
+            </button>
+        </div>
+
+        <!-- Rodapé com o nome do remetente -->
+        <p class="text-center text-gray-400 mt-8 text-sm">
+            De: Enzo Albino Domingos
+        </p>
+
+    </div>
+
+    <!-- Script para a funcionalidade do botão -->
+    <script>
+        // Aguarda o carregamento do DOM antes de adicionar o evento
+        document.addEventListener('DOMContentLoaded', () => {
+            const revealButton = document.getElementById('revealButton');
+            const hiddenMessage = document.getElementById('hiddenMessage');
+            const initialMessage = document.getElementById('initialMessage');
+
+            // Adiciona um 'listener' de clique ao botão
+            revealButton.addEventListener('click', () => {
+                // Altera as classes para mostrar a mensagem
+                hiddenMessage.classList.remove('opacity-0', 'max-h-0');
+                hiddenMessage.classList.add('opacity-100', 'max-h-96'); // Aumenta a altura máxima para o texto aparecer
+                
+                // Oculta a mensagem inicial e o botão
+                initialMessage.classList.add('opacity-0');
+                revealButton.classList.add('opacity-0');
+                
+                // Desabilita o botão para evitar cliques múltiplos
+                revealButton.disabled = true;
+                
+                // Após o fade out, esconde os elementos para liberar espaço
+                setTimeout(() => {
+                    initialMessage.classList.add('hidden');
+                    revealButton.classList.add('hidden');
+                }, 500);
+            });
+        });
+    </script>
+</body>
+</html>
